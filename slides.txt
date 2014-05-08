@@ -1,0 +1,145 @@
+> Abstract
+> ========
+>
+> Creating mobile-friendly UI components with React
+>
+> React has entered the very crowded scene of javascript UI libraries, but with its novel and unorthodox
+> approach it has taken the web by storm.
+
+# Hello
+
+~
+
+~
+
+~Arne Martin Aurlien
+Boost Communications
+github.com/arnemart
+@arnemart
+
+----
+
+# Befungius
+
+--
+
+~
+
+~
+
+~An _N-dimensional_, `multi-threaded`, __self-hosted__ befunge interpreter
+--
+with a super fast tracing JIT compiler
+--
+and a voxel.js based editor
+
+----
+
+# j/k
+
+~
+
+~(sorry)
+
+----
+
+# Not-mobile-unfriendly
+
+# UI components with React
+
+~
+
+~(And Topcoat)
+
+~
+
+~
+
+> Hello etc.
+> I'll be talking at you for a while, and then there will be some live coding.
+>
+> Like all chronic procrastinators I have written my own presentation tool (called slid.js),
+> check it out on github if you feel like reading some code that will make you
+> want to gouge your eyes out with a spoon.
+
+----
+
+# react.js
+
+--
+* Yes, it’s another Javascript UI library
+--
+* (But it has some special tricks up its sleeves)
+--
+* Created by Facebook! Can you believe it
+--
+* Wonderfully limited in functionality
+
+
+----
+
+# So what does it do
+
+--
+* The V in MVC
+--
+* BYO routing/structure/persistence etc.
+
+
+----
+
+# Side note
+
+--
+* React has super helpful error messages
+--
+
+```javascript
+React.div({
+    style: "color: #a0df00; font-family: 'Comic Neue'"
+});
+```
+
+--
+
+_The 'style' prop expects a mapping from style properties to values, not a string._
+
+--
+
+```javascript
+React.div({
+    style: { color: '#a0df00', fontFamily: 'Comic Neue' }
+});
+```
+
+----
+
+# .jsx
+
+~
+
+~Or: There's always a catch
+
+--
+* JS: Not good enough
+--
+* JSX: Crazy
+--
+
+```javascript
+var c = React.createClass({
+    render: function() {
+        return <div class="wat">
+            <span>I'm HTML inside javascript</span>
+            <span>Why do I exist</span>
+        </div>
+    }
+});
+```
+
+--
+* I don't like this so let's not spend any more time on it.
+
+> A solid JS api isn't good enough for the facebook devs,
+> so they created jsx, a batshit crazy way of putting html inside your JS.
+> Transpiles to the equivaldent JS api calls.
