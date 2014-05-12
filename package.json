@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "slid.js": "0.0.x"
+    "slid.js": "~0.1.0"
   }
 }
