@@ -3,13 +3,13 @@
 >
 > Not mobile-unfriendly UI components with React
 >
-> React is a fairly new UI library for Javascript. Yes, there’s literally a ton of those around,
+> React is a fairly new UI library for Javascript. Yes, there s literally a ton of those around,
 > but React is a product of out-of-the-box thinking and does things a bit differently than most of the others.
 
-> All the cool people are using React these days, so let’s jump on that bandwagon and add some more buzzwords
+> All the cool people are using React these days, so let s jump on that bandwagon and add some more buzzwords
 > (mobile! Topcoat!) for good measure. This talk will give you a quick introduction to what React can do and
 > show you how to write simple components, and we'll take a quick look at how you can make sure your components
-> don’t crash and burn on mobile.
+> don t crash and burn on mobile.
 
 # Hello
 
@@ -21,6 +21,9 @@
 Boost Communications
 github.com/arnemart
 @arnemart
+
+> Hello etc.
+> My name is Arne Martin. I work for a company but that is not really that interesting or important.
 
 ----
 
@@ -38,6 +41,13 @@ with a super fast tracing JIT compiler
 --
 and a voxel.js based editor
 
+> Today I will be presenting befungius, my new enterprise-level befunge interpreter.
+> It is supports an arbitrary number of dimensions and is multithreaded. It is also
+> self-hosted, and has a super fast tracing JIT compiler.
+> There is also a voxel.js based editor, where you can navigate your code in three dimensions.
+>
+> This will change the face of lemmings-like programming forever.
+
 ----
 
 # j/k
@@ -45,6 +55,9 @@ and a voxel.js based editor
 ~
 
 ~(sorry)
+
+> (To the two of you that laughet at the joke: I'll buy you a beer later.)
+
 
 ----
 
@@ -62,10 +75,10 @@ and a voxel.js based editor
 
 ~
 
-> Hello etc.
-> I'll be talking at you for a while, and then there will be some live coding.
+> So for my _actual topic_, I'll be talking about react.
+> I'll be talking at you for a while, and then there will hopefully be some code.
 >
-> Like all chronic procrastinators I have written my own presentation tool (called slid.js),
+> Like all chronic yak shavers I have written my own presentation tool (called slid.js),
 > check it out on github if you feel like reading some code that will make you
 > literally want to gouge your eyes out with a spoon.
 
@@ -122,7 +135,7 @@ and a voxel.js based editor
 
 > The react solution: Re-render the world every time a piece of data changes. This way you can treat the UI in
 > your app like it was a classic stateless serverside web app, where you start from scratch on every request.
-
+> I told you React was kind of unorthodox, didn't I?
 
 ----
 
@@ -135,7 +148,7 @@ and a voxel.js based editor
 --
 * Yes
 --
-* Very slow
+* It's super slow
 --
 * So let's make our own DOM!
 --
@@ -144,8 +157,6 @@ and a voxel.js based editor
 * Diff with real DOM, apply minimal changes to keep in sync
 
 > The DOM is super slow.
-
-
 
 
 
