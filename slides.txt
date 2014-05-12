@@ -1,10 +1,15 @@
 > Abstract
 > ========
 >
-> Creating mobile-friendly UI components with React
+> Not mobile-unfriendly UI components with React
 >
-> React has entered the very crowded scene of javascript UI libraries, but with its novel and unorthodox
-> approach it has taken the web by storm.
+> React is a fairly new UI library for Javascript. Yes, there’s literally a ton of those around,
+> but React is a product of out-of-the-box thinking and does things a bit differently than most of the others.
+
+> All the cool people are using React these days, so let’s jump on that bandwagon and add some more buzzwords
+> (mobile! Topcoat!) for good measure. This talk will give you a quick introduction to what React can do and
+> show you how to write simple components, and we'll take a quick look at how you can make sure your components
+> don’t crash and burn on mobile.
 
 # Hello
 
@@ -43,6 +48,8 @@ and a voxel.js based editor
 
 ----
 
+~
+
 # Not-mobile-unfriendly
 
 # UI components with React
@@ -60,11 +67,15 @@ and a voxel.js based editor
 >
 > Like all chronic procrastinators I have written my own presentation tool (called slid.js),
 > check it out on github if you feel like reading some code that will make you
-> want to gouge your eyes out with a spoon.
+> literally want to gouge your eyes out with a spoon.
 
 ----
 
-# react.js
+~
+
+# React
+
+~
 
 --
 * Yes, it’s another Javascript UI library
@@ -78,12 +89,71 @@ and a voxel.js based editor
 
 ----
 
-# So what does it do
+~
+
+# The DOM is stupid
+
+~
 
 --
-* The V in MVC
+* A stateful mess
 --
-* BYO routing/structure/persistence etc.
+* Frameworks provide two-way binding between UI and app state
+--
+* And that gets hairy FAST
+
+
+> As everybody knows, the DOM is stupid and hard to work with. Frameworks like Angular, Backbone, Ember, Knockout
+> provide two-wey data binding between the DOM and the application state. Without discipline this gets messy and
+> ugly and hairy real fast.
+
+----
+
+~
+
+# Solution:
+
+~
+
+--
+* Re-render everything on every update!
+--
+* Treat your app like a stateless web app
+
+> The react solution: Re-render the world every time a piece of data changes. This way you can treat the UI in
+> your app like it was a classic stateless serverside web app, where you start from scratch on every request.
+
+
+----
+
+~
+
+# But isn't the DOM slow
+
+~
+
+--
+* Yes
+--
+* Very slow
+--
+* So let's make our own DOM!
+--
+* Render everything to a virtual DOM
+--
+* Diff with real DOM, apply minimal changes to keep in sync
+
+> The DOM is super slow.
+
+
+
+
+
+
+
+
+
+
 
 
 ----
@@ -137,9 +207,33 @@ var c = React.createClass({
 });
 ```
 
+----
+
+# .jsx
+
+~
+
+~Or: There's always a catch
+
+* JS: Not good enough
+* JSX: Crazy
+
+```javascript
+var c = React.createClass({
+    render: function() {
+        return React.div({ className: wat },
+            React.span(null, "I'm HTML inside javascript"),
+            React.span(null, "Why do I exist")
+        );
+    }
+});
+```
+
 --
-* I don't like this so let's not spend any more time on it.
+* I don't like jsx so let's not spend any more time on it.
 
 > A solid JS api isn't good enough for the facebook devs,
 > so they created jsx, a batshit crazy way of putting html inside your JS.
-> Transpiles to the equivaldent JS api calls.
+> Transpiles to the equivalent JS api calls at build-time.
+> I'm "opinionated" and I don't like this so let's not waste any more time on it.
+> Thankfully it is completely optional.
