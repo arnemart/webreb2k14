@@ -115,7 +115,7 @@ and a voxel.js based editor
 x  nbn6g6yfvfn nv      b  bvvb b b   n     <cxxc
 
 > This slide was co-authored by my daughter. (I am currently on paternity leave, so it's a wonder I am able to communicate
-> with you guys at all. Yes you are, yes you are.)
+> verbally with you guys at all. Yes you are, yes you are.)
 > But yeah, why was React created?
 
 ----
@@ -151,9 +151,9 @@ x  nbn6g6yfvfn nv      b  bvvb b b   n     <cxxc
               |_____|   |_____|
 
 
-> As everybody knows, the DOM is stupid and hard to work with. Everuthing is stateful, and keeping the DOM in sync
+> As everybody knows, the DOM is stupid and hard to work with. Everything is stateful, and keeping the DOM in sync
 > with your application data can be a real pain. Frameworks like Angular, Backbone, Ember, Knockout
-> provide two-way data binding between the DOM and the application state. That can be very powerful, but wiithout
+> provide two-way data binding between the DOM and the application state. That can be very powerful, but without
 > discipline it can get messy and ugly and hairy real fast.
 > As you probably have experienced if you have ever written a non-trivial application in one of these frameworks,
 > the data flow can be unpredictable and you may need to add code to handle special cases all over the place. It is
@@ -187,8 +187,8 @@ x  nbn6g6yfvfn nv      b  bvvb b b   n     <cxxc
 > Here's an example of how this can be done:
 > This example has views, dispatchers and data stores. Facebook calls it the "flux" pattern.
 > The views are rendered with data from the data stores. The views respond to user events, and send
-> messages to the dispatcher, which is responsible for storing data in the stores. When the stores update, all the
-> affected views are re-rendered from scratch.
+> messages to the dispatcher, which is responsible for storing data in the stores. When data in the stores update,
+> the whole app is re-rendered from scratch.
 
 
 ----
@@ -458,7 +458,6 @@ React.renderComponent(aComponent(someData), anElement);
 ```
 
 
->
 > I was going to name this talk "Mobile-friendly UI components with React".
 > Turns out, there's not really a whole lot to do to make your components mobile friendly,
 > and very little that's React-specific, so I changed "mobile-friendly" to "not mobile-unfriendly".
@@ -484,7 +483,7 @@ React.renderComponent(aComponent(someData), anElement);
 * Perfect for mobile web apps
 
 
-> Now that we're talking about mobile, let's make a detour and talk about topcoat.
+> Now that we're talking about mobile, let's make a slight detour and talk about topcoat.
 > Topcoat is a CSS component library created by Adobe for performant web apps.
 > There are components for different types of buttons, lists, checkboxes, text fields, other types of UI elements.
 > Everything is thoroughly benchmarked to ensure great rendering performance.
@@ -496,7 +495,17 @@ React.renderComponent(aComponent(someData), anElement);
 
 # More code please
 
-> React and Topcoat are two good flavours that taste great together, as they say. This next sampe demonstrates that.
+--
+
+```#!
+make demo2
+```
+
+```#!
+e demo2.js
+```
+
+> React and Topcoat are two good flavours that taste great together, as they say. This next sample demonstrates that.
 > I don't have time to code this from scratch for you, but I'll take you through the code and then we'll add a feature.
 > Here's the app, it's a super simple note taking app. You can add notes, select and edit notes, everything updates in real time.
 > The code is separated into four components: one to show the list, one to show the edit field, one "add note" button,
@@ -515,7 +524,7 @@ React.renderComponent(aComponent(someData), anElement);
 > The add note button component gets the method for adding a new note. Reasonable.
 
 > Right, so this app is nice and pretty but not very useful -- because every time I refresh the browser, all notes are lost.
-> Let's fix that.
+> Let's fix that, we'll add persistence using localStorage.
 
 
 >    componentDidUpdate: function() {
@@ -537,15 +546,6 @@ React.renderComponent(aComponent(someData), anElement);
 
 > And that's pretty much it! I leave deleting notes and adding a backend server as an excercise to you.
 
---
-
-```#!
-make demo2
-```
-
-```#!
-e demo2.js
-```
 
 
 ----
@@ -582,8 +582,9 @@ React.DOM.div({
 }, 'Hello');
 ```
 
-> I didn't have anywhere else to put this so I squeezed it in at the end because I think it's pretty cool.
-> When using the development built, React has GREAT error messages that actually explain what you are doing
+> My talk is almost done. I didn't have anywhere else to put this last side note though, so I squeezed it in
+> here at the end because I think it's pretty cool.
+> When using the development build, React has GREAT error messages that actually explain what you are doing
 > wrong and what you can do to fix it. Great stuff.
 
 
