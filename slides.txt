@@ -253,7 +253,7 @@ make demo1
 ```
 
 ```#!
-e demo1.js
+e 1/demo.js
 ```
 
 > var React = require('react');
@@ -502,7 +502,7 @@ make demo2
 ```
 
 ```#!
-e demo2.js
+e 2/demo.js
 ```
 
 > React and Topcoat are two good flavours that taste great together, as they say. This next sample demonstrates that.
