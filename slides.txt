@@ -256,6 +256,8 @@ make demo1
 e 1/demo.js
 ```
 
+> Remember C-x C-+ to increase font size
+
 > var React = require('react');
 >
 > var myFirstComponent = React.createClass({
@@ -587,7 +589,6 @@ React.DOM.div({
 > When using the development build, React has GREAT error messages that actually explain what you are doing
 > wrong and what you can do to fix it. Great stuff.
 
-
 ----
 
 ~
@@ -601,7 +602,6 @@ React.DOM.div({
 ```#!
 make kill
 ```
-
 --
 * React is a thing that exists
 --
@@ -612,7 +612,6 @@ make kill
 ~
 
 --
-
 ~Thanks!
 
 ~
