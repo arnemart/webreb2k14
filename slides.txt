@@ -3,13 +3,13 @@
 >
 > Not mobile-unfriendly UI components with React
 >
-> React is a fairly new UI library for Javascript. Yes, there s literally a ton of those around,
+> React is a fairly new UI library for Javascript. Yes, there's literally a ton of those around,
 > but React is a product of out-of-the-box thinking and does things a bit differently than most of the others.
 
-> All the cool people are using React these days, so let s jump on that bandwagon and add some more buzzwords
+> All the cool people are using React these days, so let's jump on that bandwagon and add some more buzzwords
 > (mobile! Topcoat!) for good measure. This talk will give you a quick introduction to what React can do and
 > show you how to write simple components, and we'll take a quick look at how you can make sure your components
-> don t crash and burn on mobile.
+> don't crash and burn on mobile.
 
 # Hello
 
@@ -24,6 +24,9 @@ github.com/arnemart
 
 > Hello etc.
 > My name is Arne Martin. I work for a company but that is not really that interesting or important.
+
+> I was one of the four initial speakers announced for web rebels, I am proud to be the "who the hell
+> is that guy" in the initial lineup. You are all amazing and I am so happy to be here.
 
 ----
 
@@ -44,9 +47,11 @@ and a voxel.js based editor
 > Today I will be presenting befungius, my new enterprise-level befunge interpreter.
 > It is supports an arbitrary number of dimensions and is multithreaded. It is also
 > self-hosted, and has a super fast tracing JIT compiler.
-> There is also a voxel.js based editor, where you can navigate your code in three dimensions.
+> There is a voxel.js based editor, where you can navigate your code in three dimensions.
 >
 > This will change the face of lemmings-like programming forever.
+
+> My notes say "hold for laughs"
 
 ----
 
@@ -56,7 +61,7 @@ and a voxel.js based editor
 
 ~(sorry)
 
-> (To the two of you that laughet at the joke: I'll buy you a beer later.)
+> (To the two of you that laughed at this: I'll buy you a beer after.)
 
 
 ----
@@ -67,13 +72,6 @@ and a voxel.js based editor
 
 # UI components with React
 
-~
-
-~(And Topcoat)
-
-~
-
-~
 
 > So for my _actual topic_, I'll be talking about react.
 > I'll be talking at you for a while, and then there will hopefully be some code.
@@ -81,6 +79,7 @@ and a voxel.js based editor
 > Like all chronic yak shavers I have written my own presentation tool (called slid.js),
 > check it out on github if you feel like reading some code that will make you
 > literally want to gouge your eyes out with a spoon.
+> Also I have my notes on paper. Sorry.
 
 ----
 
@@ -97,16 +96,33 @@ and a voxel.js based editor
 --
 * Created by Facebook! Can you believe it
 --
+* (Mostly) self-contained reusable UI components
+--
 * Wonderfully limited in functionality
 
+
+
+> Right, so let's get started. What's react? It's one among the dozens of javascript UI libraries.
+> React does things a bit differently from most of the others though.
+> It was created by the dev team at Facebook, if you can believe that, and the first public release was around a year ago.
+> It is just for UI -- if you need routing, persistence, ajax etc you need to provide that yourself.
+> Some people use it as the V in MVC, for instance with backbone, but if you follow the philoophy you probably don't need
+> to use classic MVC at all.
+> So, why was React created?
+
+----
+
+x  nbn6g6yfvfn nv      b  bvvb b b   n     <cxxc
+
+> This slide was co-authored by my daughter. (I am currently on paternity leave, so it's a wonder I am able to communicate
+> with you guys at all. Yes you are, yes you are.)
+> But yeah, why was React created?
 
 ----
 
 ~
 
 # The DOM is stupid
-
-~
 
 --
 * A stateful mess
@@ -115,27 +131,86 @@ and a voxel.js based editor
 --
 * And that gets hairy FAST
 
+--
 
-> As everybody knows, the DOM is stupid and hard to work with. Frameworks like Angular, Backbone, Ember, Knockout
-> provide two-wey data binding between the DOM and the application state. Without discipline this gets messy and
-> ugly and hairy real fast.
+                    _____
+                   |     |
+                   |  M  |
+                   |_____|
+                      ^
+                      |
+                    __v__
+                   |     |
+                   |  C  |
+                   |_____|
+                     ^ ^
+                    /   \
+               ____v     v____
+              |     |   |     |
+              |  V  |   |  V  |
+              |_____|   |_____|
+
+
+> As everybody knows, the DOM is stupid and hard to work with. Everuthing is stateful, and keeping the DOM in sync
+> with your application data can be a real pain. Frameworks like Angular, Backbone, Ember, Knockout
+> provide two-way data binding between the DOM and the application state. That can be very powerful, but wiithout
+> discipline it can get messy and ugly and hairy real fast.
+> As you probably have experienced if you have ever written a non-trivial application in one of these frameworks,
+> the data flow can be unpredictable and you may need to add code to handle special cases all over the place. It is
+> also easy to get very tight coupling between models, views and controllers if you are not careful.
 
 ----
 
 ~
 
-# Solution:
+# One-way data binding
+
+--
+
+               _____      _____
+              |     |    |     |
+              |  V  |--->|  D  |
+              |_____|    |_____|
+                  ^       /
+                   \_____v
+                   |     |
+                   |  S  |
+                   |_____|
+
+
+> React has neither Ms, Vs or Cs in the classic MVC sense. First of all, React is purely a UI rendering library,
+> so models are out of scope, and React components contain both view and controller code. An MVC architect will
+> frown at the tight coupling between layers, if he's not busy building a ServiceFactoryProviderHelperFactory,
+> but a smart person such as yourself will be able to appreciate that this allows for very loose coupling between
+> the components themselves.
+> React allows for a different model, with unidirectional data flow.
+> Here's an example of how this can be done:
+> This example has views, dispatchers and data stores. Facebook calls it the "flux" pattern.
+> The views are rendered with data from the data stores. The views respond to user events, and send
+> messages to the dispatcher, which is responsible for storing data in the stores. When the stores update, all the
+> affected views are re-rendered from scratch.
+
+
+----
+
+~
+
+# Wat
 
 ~
 
 --
-* Re-render everything on every update!
+* Yes, re-render everything on every update!
 --
 * Treat your app like a stateless web app
+--
+
+![70](img/phprails.png)
+
 
 > The react solution: Re-render the world every time a piece of data changes. This way you can treat the UI in
-> your app like it was a classic stateless serverside web app, where you start from scratch on every request.
-> I told you React was kind of unorthodox, didn't I?
+> your app like it was a classic stateless serverside web app (using Your Favourite Technology Stack), where
+> you get a clean slate on every request.
 
 ----
 
@@ -150,52 +225,158 @@ and a voxel.js based editor
 --
 * It's super slow
 --
-* So let's make our own DOM!
+* Let's make our own DOM!
 --
 * Render everything to a virtual DOM
 --
 * Diff with real DOM, apply minimal changes to keep in sync
 
-> The DOM is super slow.
+
+> Now, I know what you are asking yourself: How does he maintain that genuine combination of smarts and charm?
+> Also, isn't the DOM very slow?
+> Well, yes, the DOM is super slow.
+> So the facebook devs did the only sensible thing that came to mind in their drug-fuelled stupor and implemented
+> a virtual DOM that everything renders to. This virtual DOM is diffed with the actual DOM to produce the minimal
+> set of changes thad need to be done to keep the two in sync.
 
 
+----
+
+~
+
+# OK so let's try this
+
+--
+
+```#!
+make demo1
+```
+
+```#!
+e demo1.js
+```
+
+> var React = require('react');
+>
+> var myFirstComponent = React.createClass({
+>     render: function() {
+>         return React.DOM.div(null, 'Hello webrebs!');
+>     }
+> });
+>
+> React.renderComponent(myFirstComponent(), document.getElementById('main'));
 
 
+> I'm using browserify to load React. If you don't understand what this first line means, don't worry, it will
+> be explained to you in a talk later today.
+> Let's create our first component, and let's call it myFirstComponent. The function for creating new components
+> is called React.createClass, because the person in charge of naming things was high as a kite that day. It works
+> great though, even if the name doesn't make sense.
+> createClass (ugh) takes an object literal as its parameter. The only thing that's mandatory is a "render"
+> function, so let's add that. This function should return whatever is to be rendered -- typically a DOM element
+> or another component. React.DOM is -- you guessed it -- reacts DOM library. Let's make a DIV. The first parameter
+> to our div is an object literal of props -- that's data that we're passing to the component. Don't need any here
+> so we'll just say null (you can also use empty object {}). After the props you can add as many arguments as you
+> want -- each argument should be a string, a new React DOM element, or another React component. Components are
+> infinitely nestable. We'll just write "Hello webrebs!"
+> That's our first component! But we have to get it on to the page. For that we use the reasonably named
+> React.renderComponent. The first argument is the component to be rendered -- remember to call it as a function
+> or you'll get an error -- and the second argument is where to put it on the page. I have a div with id 'main' so
+> I'll use that.
+> There we go -- our first react component! It's not very interesting though.
+
+> var myFirstComponent = React.createClass({
+>     getInitialState: function() {
+>         return {
+>             clicks: 0
+>         };
+>     },
+>     handleClick: function() {
+>         this.setState({
+>             clicks: this.state.clicks + 1
+>         });
+>     },
+>     render: function() {
+>         return React.DOM.div(
+>             null,
+>             React.DOM.button(
+>                 {
+>                     onClick: this.handleClick
+>                 },
+>                 'I have been clicked ', this.state.clicks, ' times!'
+>             )
+>         );
+>     }
+> });
 
 
+> Let's make it a bit more interactive. Let's add a button! Buttons are great, I love buttons. React.DOM.button.
+> The button needs a prop to handle when it is being clicked -- it will call the this.handleClick function. we'll
+> write that function in a minute. The button will proudly proclaim how many times it has been clicked. The number
+> of clicks will be stored in the components state. All the handleClick function does is setState and increment
+> clicks by one. Next we need to know what the initial value of clicks should be, this is handled by the getInitialState
+> function. It should return the components initial state.
+> There, we have a component with a bit more interactivity in it.
 
+
+> var myFirstComponent = React.createClass({
+>     getInitialState: function() {
+>         return {
+>             clicks: 0,
+>             seconds: 0
+>         };
+>     },
+>     handleClick: function() {
+>         this.setState({
+>             clicks: this.state.clicks + 1
+>         });
+>     },
+>     componentDidMount: function() {
+>         this.secondsInterval = setInterval(function() {
+>             this.setState({
+>                 seconds: this.state.seconds + 1
+>             });
+>         }.bind(this), 1000);
+>     },
+>     componentWillUnmount: function() {
+>         clearInterval(this.secondsInterval);
+>     },
+>     render: function() {
+>         return React.DOM.div(
+>             null,
+>             React.DOM.button(
+>                 {
+>                     onClick: this.handleClick
+>                 },
+>                 'I have been clicked ', this.state.clicks, ' times!'
+>             ),
+>             React.DOM.div(null, this.state.seconds, ' seconds have passed')
+>         );
+>     }
+> });
+
+> Not every change is triggered by user action. Let's add a counter to our component that
+> simply counts seconds since page refresh. We'll put it in a new div at the bottom.
+> All React components may implement a bunch of different lifecycle methods. getInitialState
+> that we are already using is one. Let's add another item to our state, seconds. Initially 0.
+> Another lifecycle method is componentDidMount, which is triggered just after the component
+> is added to the page and rendered for the first time. In this function we will start a timer
+> with setInterval. We need to keep the interval ID around so we can clear it later. Every
+> second we'll increment seconds with one.
+> componentWillUnmount is called just before a component is removed from the page. Here we'll
+> clean up after ourselves and clear that interval.
+> Beautiful.
 
 
 
 ----
 
-# Side note
-
---
-* React has super helpful error messages
---
-
-```javascript
-React.div({
-    style: "color: #a0df00; font-family: 'Comic Neue'"
-});
+```#!
+make kill
 ```
 
---
 
-_The 'style' prop expects a mapping from style properties to values, not a string._
-
---
-
-```javascript
-React.div({
-    style: { color: '#a0df00', fontFamily: 'Comic Neue' }
-});
-```
-
-----
-
-# .jsx
+# Side note I: jsx
 
 ~
 
@@ -220,7 +401,7 @@ var c = React.createClass({
 
 ----
 
-# .jsx
+# Side note I: jsx
 
 ~
 
@@ -232,9 +413,9 @@ var c = React.createClass({
 ```javascript
 var c = React.createClass({
     render: function() {
-        return React.div({ className: wat },
-            React.span(null, "I'm HTML inside javascript"),
-            React.span(null, "Why do I exist")
+        return React.DOM.div({ className: wat },
+            React.DOM.span(null, "I'm HTML inside javascript"),
+            React.DOM.span(null, "Why do I exist")
         );
     }
 });
@@ -243,8 +424,199 @@ var c = React.createClass({
 --
 * I don't like jsx so let's not spend any more time on it.
 
-> A solid JS api isn't good enough for the facebook devs,
-> so they created jsx, a batshit crazy way of putting html inside your JS.
+
+> In the haze of pot smoke filling the facebook offices, the devs all agreed a solid JS api wasn't good enough.
+> So they created jsx, a batshit crazy way of putting html inside javascript.
 > Transpiles to the equivalent JS api calls at build-time.
-> I'm "opinionated" and I don't like this so let's not waste any more time on it.
 > Thankfully it is completely optional.
+> I'm "opinionated" and I don't like this so let's not waste any more time on it.
+
+
+----
+
+~
+
+# Mobile?
+
+~
+
+--
+* What do I do to make my component mobile-friendly?
+--
+* Not a whole lot
+--
+* Don't be an idiot
+--
+
+~
+
+If you need touchEvents:
+
+```javascript
+React.initializeTouchEvents(true);
+React.renderComponent(aComponent(someData), anElement);
+```
+
+
+>
+> I was going to name this talk "Mobile-friendly UI components with React".
+> Turns out, there's not really a whole lot to do to make your components mobile friendly,
+> and very little that's React-specific, so I changed "mobile-friendly" to "not mobile-unfriendly".
+> The general "rules" for mobile-friendliness apply: Don't rely on :hover; consider small screen
+> sizes when designing; don't include tons and tons of fonts, images, JS and CSS; profile your
+> app for performance issues, etc.
+
+----
+
+~
+
+# Side note II: Topcoat
+
+~
+
+--
+* "CSS for fast and clean web apps"
+--
+* Created by Adobe
+--
+* Focus on rendering performance
+--
+* Perfect for mobile web apps
+
+
+> Now that we're talking about mobile, let's make a detour and talk about topcoat.
+> Topcoat is a CSS component library created by Adobe for performant web apps.
+> There are components for different types of buttons, lists, checkboxes, text fields, other types of UI elements.
+> Everything is thoroughly benchmarked to ensure great rendering performance.
+> It's really good for getting up and running with mobile web apps quickly.
+
+----
+
+~
+
+# More code please
+
+> React and Topcoat are two good flavours that taste great together, as they say. This next sampe demonstrates that.
+> I don't have time to code this from scratch for you, but I'll take you through the code and then we'll add a feature.
+> Here's the app, it's a super simple note taking app. You can add notes, select and edit notes, everything updates in real time.
+> The code is separated into four components: one to show the list, one to show the edit field, one "add note" button,
+> and one "main" component to wrap the sub components and maintain the state.
+> React components have both "props" and "state" which can be a bit confusing, but I'll try to explain.
+> The gist of it is that props are data that are passed in to the component when it is rendered, while state
+> is data that is internal to the component, and will only be changed from within the component, typically as
+> a response to user input. Props can contain anything -- simple or complex values, functions, other React components etc. --
+> while state should only contain simple values, arrays or objects.
+> In this example, as I mentioned, the state is maintained by the top level component (this is typical). It consists
+> of the list of notes, and which note is currently selected. The main component also has methods for selecting, saving
+> and adding notes. The main components passes the sub components whatever data and methods they need as props.
+> The noteList component gets the list of notes, the currently selected note, and the method for selecting notes.
+> the noteView component gets the text of the currently selected note, plus the method for saving notes. The save method
+> is called every time the text is changed.
+> The add note button component gets the method for adding a new note. Reasonable.
+
+> Right, so this app is nice and pretty but not very useful -- because every time I refresh the browser, all notes are lost.
+> Let's fix that.
+
+
+>    componentDidUpdate: function() {
+>        window.localStorage.setItem('notes', JSON.stringify(this.state));
+>    },
+
+>    getInitialState: function() {
+>        var savedNotes = window.localStorage.getItem('notes');
+>        if (savedNotes) {
+>            return JSON.parse(savedNotes);
+>        } else {
+>            return {
+>                notes: ['New note'],
+>                selectedNote: 0
+>            };
+>        }
+>    },
+
+
+> And that's pretty much it! I leave deleting notes and adding a backend server as an excercise to you.
+
+--
+
+```#!
+make demo2
+```
+
+```#!
+e demo2.js
+```
+
+
+----
+
+```#!
+make kill
+```
+
+~
+
+# Side note III:
+
+# Error messages
+
+--
+* React has super helpful error messages
+--
+
+```javascript
+React.DOM.div({
+    style: "color: #a0df00; font-family: 'Comic Neue'"
+}, 'Hello');
+```
+
+--
+
+_The 'style' prop expects a mapping from style properties to values, not a string._
+
+--
+
+```javascript
+React.DOM.div({
+    style: { color: '#a0df00', fontFamily: 'Comic Neue' }
+}, 'Hello');
+```
+
+> I didn't have anywhere else to put this so I squeezed it in at the end because I think it's pretty cool.
+> When using the development built, React has GREAT error messages that actually explain what you are doing
+> wrong and what you can do to fix it. Great stuff.
+
+
+----
+
+~
+
+# Wrap up
+
+~
+
+~
+
+```#!
+make kill
+```
+
+--
+* React is a thing that exists
+--
+* It's pretty nice, you should try it
+
+~
+
+~
+
+--
+
+~Thanks!
+
+~
+
+~@arnemart
+github.com/arnemart/webreb2k14
+
+> And that's all I have! All code plus these amazing slides are available on github.
