@@ -23,13 +23,10 @@ var noteView = React.createClass({
         this.props.saveNote(e.target.value);
     },
     render: function() {
-        return React.DOM.div(
-            null,
-            tc.textArea({
-                onChange: this.saveNote,
-                value: this.props.text
-            })
-        );
+        return tc.textArea({
+            onChange: this.saveNote,
+            value: this.props.text
+        });
     }
 });
 
